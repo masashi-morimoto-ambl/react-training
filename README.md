@@ -1,2 +1,5 @@
 # react-training
-React学習用
+
+## ブランチ
+`main`: Amplify連携ブランチ
+`feature/front-base`: React-Typescriptベース。emotion構築済み。
