@@ -6,7 +6,7 @@
 	"extends": [
 		"plugin:react/recommended",
 		"plugin:@typescript-eslint/recommended",
-		"standard-with-typescript"
+		"plugin:prettier/recommended"
 	],
 	"overrides": [
 	],
@@ -22,28 +22,7 @@
 		"react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
 		"comma-dangle": "off",
-		"import/order": [
-			"warn",
-			{
-				"groups": [
-					"builtin",
-					"external",
-					"type",
-					"internal",
-					"parent",
-					"sibling",
-					"object",
-					"index"
-				],
-				"pathGroups": [
-					{
-						"pattern": "@/**",
-						"group": "internal",
-						"position": "before"
-					}
-				]
-			}
-		]
+		"no-console": "warn"
 	},
 	"settings": {
     "react": {
