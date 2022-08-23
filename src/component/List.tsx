@@ -1,7 +1,12 @@
+import { color } from '@/styles/theme'
 import { css } from '@emotion/react'
 
 export const List: React.FunctionComponent = () => {
-  return <div css={SampleStyle}>Sample Component</div>
+  return (
+    <div css={SampleStyle}>
+      <h1 css={{ color: color.mainFontColor }}>Sample Component</h1>
+    </div>
+  )
 }
 
 const SampleStyle = css({

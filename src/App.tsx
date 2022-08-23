@@ -1,5 +1,5 @@
 import { css } from '@emotion/react'
-import { List } from './component'
+import { List } from '@/component/List'
 
 const App: React.FunctionComponent = () => {
   return (

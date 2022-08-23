@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   babel: {
     presets: [
@@ -7,5 +9,10 @@ module.exports = {
       ],
     ],
     plugins: ["@emotion/babel-plugin"],
+  },
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+    },
   },
 };
