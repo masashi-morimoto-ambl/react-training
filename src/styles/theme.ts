@@ -1,3 +1,5 @@
 export const color = {
-  mainFontColor: '#AAAAAA',
+  titleColor: '#AAAAAA',
+  borderColor: '#EFEFEF',
+  warning: '#D32F2F',
 }

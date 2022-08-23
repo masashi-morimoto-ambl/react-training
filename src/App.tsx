@@ -1,22 +1,32 @@
-import { css } from '@emotion/react'
-import { List } from '@/component/List'
+import { useState } from 'react'
+import { InputTask, MainTemplate, TaskList } from './component'
+import { ERROR_MESSAGES } from './component/enums'
+import { TodosType } from './models'
 
 const App: React.FunctionComponent = () => {
+  const [errorMessage, setErrorMessage] = useState('')
+  const [todos, setTodos] = useState<TodosType>([
+    {
+      text: 'タスク1',
+    },
+  ])
+
+  const handleAddTask = (todo: string) => {
+    if (todo === '') {
+      setErrorMessage(ERROR_MESSAGES.required())
+      return
+    } else {
+      setErrorMessage('')
+    }
+    setTodos((beforeTodos) => [...beforeTodos, { text: todo }])
+  }
+
   return (
-    <div css={AppStyle}>
-      <List css={childStyle}></List>
-    </div>
+    <MainTemplate title="TODO">
+      <InputTask onClickAdd={handleAddTask} errorMessage={errorMessage} />
+      <TaskList todos={todos} />
+    </MainTemplate>
   )
 }
-
-const AppStyle = css({
-  marginTop: 100,
-  paddingLeft: 10,
-  paddingRight: 10,
-})
-
-const childStyle = css({
-  border: '1px solid',
-})
 
 export default App
