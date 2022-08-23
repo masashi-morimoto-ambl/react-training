@@ -23,6 +23,8 @@
     "start": "craco start",
     "build": "craco build",
     "lint": "eslint . --ext .tsx --ext .ts --fix",
+    "format": "prettier --ignore-path .gitignore --write '**/*.{js,jsx,ts,tsx,md,json}'",
+    "type-check": "tsc --noEmit",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -50,7 +52,10 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": "eslint --max-warnings=0 --ext .tsx --ext .ts --fix"
+    "*.{ts,tsx}": [
+      "eslint --max-warnings=0 --ext .tsx --ext .ts --fix",
+      "yarn format"
+    ]
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.2",

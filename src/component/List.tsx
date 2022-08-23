@@ -1,9 +1,12 @@
 import { color } from '@/styles/theme'
 import { css } from '@emotion/react'
 
-export const List: React.FunctionComponent = () => {
+type Props = {
+  className?: string
+}
+export const List: React.FunctionComponent = (props: Props) => {
   return (
-    <div css={SampleStyle}>
+    <div css={SampleStyle} className={props.className}>
       <h1 css={{ color: color.mainFontColor }}>Sample Component</h1>
     </div>
   )
