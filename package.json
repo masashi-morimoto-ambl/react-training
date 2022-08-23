@@ -19,6 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prepare": "husky install",
     "start": "craco start",
     "build": "craco build",
     "lint": "eslint . --ext .tsx --ext .ts --fix",
