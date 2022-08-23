@@ -1,13 +1,20 @@
+import { todoRepository } from '@/repositories/todo/todoRepository'
 import { color } from '@/styles/theme'
 import { css } from '@emotion/react'
 
 type Props = {
   className?: string
 }
-export const List: React.FunctionComponent = (props: Props) => {
+export const Sample: React.FunctionComponent = (props: Props) => {
+  const handleMock = async () => {
+    const todos = await todoRepository.getTodos()
+    // eslint-disable-next-line no-console
+    console.log(todos)
+  }
   return (
     <div css={SampleStyle} className={props.className}>
       <h1 css={{ color: color.mainFontColor }}>Sample Component</h1>
+      <button onClick={() => handleMock()}>Mock Test</button>
     </div>
   )
 }

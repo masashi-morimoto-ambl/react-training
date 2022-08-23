@@ -1,10 +1,10 @@
 import { css } from '@emotion/react'
-import { List } from '@/component/List'
+import { Sample } from '@/component/Sample'
 
 const App: React.FunctionComponent = () => {
   return (
     <div css={AppStyle}>
-      <List css={childStyle}></List>
+      <Sample css={childStyle}></Sample>
     </div>
   )
 }
