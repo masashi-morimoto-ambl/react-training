@@ -1,25 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { InputTask, MainTemplate, TaskList } from './component'
 import { ERROR_MESSAGES } from './component/enums'
-import { TodosType } from './models'
+import { GetTodosSchema } from './models'
+import { todoRepository } from './repositories/todo/todoRepository'
 
 const App: React.FunctionComponent = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const [todos, setTodos] = useState<TodosType>([
-    {
-      text: 'タスク1',
-    },
-  ])
+  const [todos, setTodos] = useState<GetTodosSchema>([])
 
-  const handleAddTask = (todo: string) => {
+  // Todoを取得する
+  const getTodos = async () => {
+    const res = await todoRepository.getTodos()
+    setTodos(res)
+  }
+
+  const handleAddTask = async (todo: string) => {
     if (todo === '') {
       setErrorMessage(ERROR_MESSAGES.required())
       return
     } else {
       setErrorMessage('')
     }
-    setTodos((beforeTodos) => [...beforeTodos, { text: todo }])
+    try {
+      // TODO保存
+      await todoRepository.postTodos({
+        task: todo,
+      })
+      // TODO更新
+      getTodos()
+    } catch (error) {}
   }
+
+  useEffect(() => {
+    getTodos()
+  }, [])
 
   return (
     <MainTemplate title="TODO">

@@ -35,7 +35,7 @@ export const client = async <T>(
   }).catch((error) => {
     // eslint-disable-next-line no-console
     console.error(error)
-    return Promise.reject()
+    return Promise.reject(error)
   })
 
   const contentType = response.headers.get('content-type') || ''

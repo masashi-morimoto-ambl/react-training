@@ -1,16 +1,16 @@
-import { TodosType } from '@/models'
+import { GetTodosSchema } from '@/models'
 import { Task } from './Task'
 
 type Props = {
-  todos: TodosType
+  todos: GetTodosSchema
 }
 
 export const TaskList = (props: Props) => {
   return (
     <>
       {props.todos.map((todo) => (
-        <ul>
-          <Task text={todo.text} />
+        <ul key={todo.id}>
+          <Task text={todo.task} />
         </ul>
       ))}
     </>

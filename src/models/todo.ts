@@ -1,3 +1,8 @@
-export type TodosType = {
-  text: string
+export type GetTodosSchema = {
+  id: number
+  task: string
 }[]
+
+export type PostTodoSchema = {
+  task: string
+}

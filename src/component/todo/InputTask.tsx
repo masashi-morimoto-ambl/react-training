@@ -18,7 +18,13 @@ export const InputTask = (props: Props) => {
           setText(v.target.value)
         }}
       />
-      <button type="button" onClick={() => props.onClickAdd(text)}>
+      <button
+        type="button"
+        onClick={() => {
+          setText('')
+          props.onClickAdd(text)
+        }}
+      >
         追加
       </button>
       {props.errorMessage && (
