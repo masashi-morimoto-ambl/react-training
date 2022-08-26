@@ -3,7 +3,7 @@
  */
 const resolveBaseUrl = () => {
   if (process.env.NODE_ENV !== 'production') {
-    return process.env.NEXT_PUBLIC_BACKEND_FQDN || 'http://localhost:3000'
+    return process.env.REACT_APP_BACKEND_DOMAIN || 'http://localhost:3000'
   }
   const frontHostname = window.location.hostname
   // フロントのドメインは、銀行名.プロダクト名が先頭に来ていることを想定している
@@ -26,7 +26,6 @@ export const client = async <T>(
 
   const response = await fetch(`${baseURL}${endPoint}`, {
     mode: 'cors',
-    credentials: 'include',
     ...config,
     headers: {
       ...headers,

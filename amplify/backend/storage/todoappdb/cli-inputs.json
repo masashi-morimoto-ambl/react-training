@@ -1,0 +1,10 @@
+{
+  "resourceName": "todoappdb",
+  "tableName": "todos",
+  "partitionKey": {
+    "fieldName": "task",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

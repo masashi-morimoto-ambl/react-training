@@ -12,6 +12,7 @@
     "@types/node": "^16.11.53",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "aws-amplify": "^4.3.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -20,8 +21,9 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "start": "craco start",
+    "dev": "craco start",
     "dev:mock": "REACT_APP_API_MOCKING=enabled craco start",
+    "backend:dev": "NODE_ENV=development node-dev ./amplify/backend/function/todoapptraining/src/app.js",
     "build": "craco build",
     "lint": "eslint . --ext .tsx --ext .ts --fix",
     "format": "prettier --ignore-path .gitignore --write '**/*.{js,jsx,ts,tsx,md,json}'",
@@ -54,7 +56,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --max-warnings=0 --ext .tsx --ext .ts --fix",
+      "eslint . --max-warnings=0 --ext .tsx --ext .ts --fix",
       "yarn format"
     ]
   },
@@ -72,6 +74,7 @@
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "msw": "^0.45.0",
+    "node-dev": "^7.4.3",
     "prettier": "^2.7.1"
   },
   "msw": {
