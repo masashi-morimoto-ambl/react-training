@@ -1,8 +1,9 @@
 export type GetTodosSchema = {
-  id: number
+  todoId: number
   task: string
 }[]
 
 export type PostTodoSchema = {
+  todoId: string
   task: string
 }

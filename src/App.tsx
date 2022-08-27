@@ -3,6 +3,7 @@ import { InputTask, MainTemplate, TaskList } from './component'
 import { ERROR_MESSAGES } from './component/enums'
 import { GetTodosSchema } from './models'
 import { todoRepository } from './repositories/todo/todoRepository'
+import { uuid } from './utils'
 
 const App: React.FunctionComponent = () => {
   const [errorMessage, setErrorMessage] = useState('')
@@ -24,6 +25,7 @@ const App: React.FunctionComponent = () => {
     try {
       // TODO保存
       await todoRepository.postTodos({
+        todoId: uuid(),
         task: todo,
       })
       // TODO更新

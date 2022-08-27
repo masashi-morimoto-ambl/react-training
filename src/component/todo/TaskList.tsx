@@ -9,7 +9,7 @@ export const TaskList = (props: Props) => {
   return (
     <>
       {props.todos.map((todo) => (
-        <ul key={todo.id}>
+        <ul key={todo.todoId}>
           <Task text={todo.task} />
         </ul>
       ))}
