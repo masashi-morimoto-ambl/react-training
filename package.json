@@ -22,7 +22,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "craco start",
-    "dev:mock": "REACT_APP_API_MOCKING=enabled craco start",
+    "dev:mock": "REACT_APP_API_MOCKING=enabled REACT_APP_BACKEND_DOMAIN=http://localhost:3000 craco start",
     "backend:dev": "NODE_ENV=development node-dev ./amplify/backend/function/todoapptraining/src/app.js",
     "build": "craco build",
     "lint": "eslint . --ext .tsx --ext .ts --fix",

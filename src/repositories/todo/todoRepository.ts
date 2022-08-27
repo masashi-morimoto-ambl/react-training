@@ -8,6 +8,15 @@ const getTodos = async () => {
   return response
 }
 
+const postTodos = async (data: unknown) => {
+  const response = client(API_URL.POST_TODOS, {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+  return response
+}
+
 export const todoRepository = {
   getTodos,
+  postTodos,
 }

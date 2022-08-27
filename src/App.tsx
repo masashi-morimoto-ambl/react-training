@@ -1,22 +1,21 @@
 import { css } from '@emotion/react'
-import { Sample } from '@/component/Sample'
 
 const App: React.FunctionComponent = () => {
   return (
     <div css={AppStyle}>
-      <Sample css={childStyle}></Sample>
+      <h1>TODOアプリ</h1>
     </div>
   )
 }
 
 const AppStyle = css({
-  marginTop: 100,
-  paddingLeft: 10,
-  paddingRight: 10,
-})
-
-const childStyle = css({
-  border: '1px solid',
+  width: 500,
+  margin: '100px auto 0',
+  backgroundColor: '#aaaaaa',
+  '>h1': {
+    color: '#eeeeee',
+    textAlign: 'center',
+  },
 })
 
 export default App
