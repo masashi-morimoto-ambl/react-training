@@ -1,0 +1,32 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "todoapp_identitypool_6a981de3",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "todoap6a981de3",
+    "userPoolName": "todoapp_userpool_6a981de3",
+    "autoVerifiedAttributes": ["email"],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": ["SMS Text Message"],
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": ["email"],
+    "aliasAttributes": [],
+    "userpoolClientGenerateSecret": false,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": ["email"],
+    "userpoolClientReadAttributes": ["email"],
+    "userpoolClientLambdaRole": "todoap6a981de3_userpoolclient_lambda_role",
+    "userpoolClientSetAttributes": false,
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "todoapp",
+    "sharedId": "6a981de3",
+    "serviceName": "Cognito",
+    "useDefault": "manual"
+  }
+}
