@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# react-training
+## 概要
+TODOアプリの実装を通してReact-TypeScriptの理解を深める
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 進め方
+- 下記に示す機能要件を`getting-started`ブランチをベースに実装
+- データ管理については、初めはState管理（フェーズ1）とする。その後、mock管理（フェーズ2）→ローカルデータベース(DB)管理(フェーズ3)に切り替える。
 
-## Available Scripts
+### 機能要件
+- TODOタスクが入力できる
+- TODOタスクを追加できる
+- TODOタスク一覧を表示できる
 
-In the project directory, you can run:
+### 機能要件（Enhance）
+こっちは余裕があれば
+- TODOタスクに完了マークがつけられる
+- ローディング
+- デザイン
 
-### `npm start`
+### データ管理
+- (フェーズ１)Component内でState管理
+- (フェーズ２)mock管理
+- (フェーズ３)ローカルサーバー管理
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# 説明
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ブランチ
+- `master`: Amplify接続ブランチ（※masterブランチ更新すると自動でAmplify環境を更新）
+- `getting-started`: 開発ベースブランチ
 
-### `npm test`
+## 開始手順
+- 本リポジトリクローン（`git clone https://github.com/masashi-morimoto-ambl/react-training.git`）
+- `getting-started`ブランチをチェックアウト（`git fetch origin getting-started && git checkout getting-started`）
+- 作業ブランチ作成（`git checkout -b 作業ブランチ名`)
+- `yarn install`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## アプリ開始
+データをmock管理とする場合
+```
+$ yarn dev:mock
+```
+データをdockerDB管理とする場合
+```
+$ yarn dev
+```
 
-### `npm run build`
+## DB構築
+### 1. イメージ作成＆軌道
+```
+$ cd db
+$ docker compose up -d --build
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. テーブル作成
+```
+$ docker compose exec awscli /bin/sh
+```
+(コンテナ内)
+```
+$ ./createTable.sh
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## デプロイ
+1. `master`ブランチ向けPR作成
+2. PRマージ
+  
+  ※マージ後、自動でAmplify環境アップデート
