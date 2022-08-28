@@ -19,7 +19,7 @@
       "function": {
         "todoapptraining": {
           "deploymentBucketName": "amplify-todoapp-dev-230043-deployment",
-          "s3Key": "amplify-builds/todoapptraining-3166724633345a724a71-build.zip"
+          "s3Key": "amplify-builds/todoapptraining-73662b6c664a34487333-build.zip"
         }
       }
     }

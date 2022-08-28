@@ -1,18 +1,4 @@
-/**
- * フロントのホスト名から、バックエンドのドメインを導出する
- */
-const resolveBaseUrl = () => {
-  if (process.env.NODE_ENV !== 'production') {
-    return process.env.REACT_APP_BACKEND_DOMAIN || 'http://localhost:3000'
-  }
-  const frontHostname = window.location.hostname
-  // フロントのドメインは、銀行名.プロダクト名が先頭に来ていることを想定している
-  // eg)mfbank.dxf.x.moneyforward.com
-  const [bankName, productName, ...rest] = frontHostname.split('.')
-  // バックエンドのdomainは、フロントのドメインをベースに銀行名の後にapiがつく想定
-  // eg)mfbank.api.dxf.x.moneyforward.com
-  return `https://${bankName}.api.${productName}.${rest.join('.')}`
-}
+const BASE_URL = process.env.REACT_APP_BACKEND_DOMAIN || 'http://localhost:3000'
 
 export const client = async <T>(
   endPoint: RequestInfo,
@@ -22,7 +8,7 @@ export const client = async <T>(
     'content-type': 'application/json',
   }
 
-  const baseURL = resolveBaseUrl()
+  const baseURL = BASE_URL
 
   const response = await fetch(`${baseURL}${endPoint}`, {
     mode: 'cors',
