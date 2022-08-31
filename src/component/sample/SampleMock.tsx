@@ -1,5 +1,4 @@
 import { todoRepository } from '@/repositories/todo/todoRepository'
-import { color } from '@/styles/theme'
 import { css } from '@emotion/react'
 
 type Props = {
@@ -24,7 +23,7 @@ export const SampleMock: React.FunctionComponent = (props: Props) => {
 
   return (
     <div css={SampleStyle} className={props.className}>
-      <h1 css={{ color: color.mainFontColor }}>GET/POST Sample</h1>
+      <h1>GET/POST Sample</h1>
       <button onClick={() => handleGetMock()}>データを取得します</button>
       <button onClick={() => handlePostMock()}>データを登録します</button>
     </div>
