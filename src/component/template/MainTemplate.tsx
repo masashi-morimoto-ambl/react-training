@@ -8,7 +8,7 @@ type Props = {
 export const MainTemplate = (props: Props) => {
   return (
     <section css={root}>
-      {props.title && <h1 css={title}>{props.title}</h1>}
+      {props.title && <h1 css={title}>{props.title}2</h1>}
       {props.children}
     </section>
   )
