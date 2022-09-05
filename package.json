@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "react-table": "^7.8.0",
     "typescript": "*",
     "web-vitals": "^2.1.4"
   },
@@ -29,7 +30,8 @@
     "format": "prettier --ignore-path .gitignore --write '**/*.{js,jsx,ts,tsx,md,json}'",
     "type-check": "tsc --noEmit",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +64,7 @@
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.10.2",
+    "@types/react-table": "^7.7.12",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.5.0",
