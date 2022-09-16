@@ -14,8 +14,6 @@ const TaskList = (props: Props) => {
   const [name, setName] = useState<string>('')
   const [deadLine, setDeadLine] = useState<string>('')
   const [error, setError] = useState<string>('')
-  const [nameError, setNameError] = useState<string>('')
-  const [deadLineError, setDeadLineError] = useState<string>('')
 
   const editingTask = (index: number, nowName: string, nowDeadLine: string) => {
     setName(nowName)
@@ -23,47 +21,36 @@ const TaskList = (props: Props) => {
     props.onClickEdit(index)
   }
   const editDone = (index: number) => {
+    setError('')
     if (name == '' && deadLine == '') {
-      errorState('入力してください', '', '')
+      setErrorState('入力してください')
       return
     } else if (name == '') {
-      errorState('', 'タスク名を入力してください', '')
+      setErrorState('タスク名を入力してください')
       return
     } else if (deadLine == '') {
-      errorState('', '', '実行期限を入力してください')
+      setErrorState('実行期限を入力してください')
       return
     }
     props.onClickEditDone(index, name, deadLine)
   }
-  const errorState = (
-    strNoName: string,
-    strNoDeadLine: string,
-    strNoBoth: string,
-  ) => {
-    setError(strNoName)
-    setNameError(strNoDeadLine)
-    setDeadLineError(strNoBoth)
+  const setErrorState = (errorName: string) => {
+    setError(errorName)
   }
   const editCancel = (index: number) => {
     setName('')
     setDeadLine('')
     setError('')
-    setNameError('')
-    setDeadLineError('')
     props.onClickCancel(index)
   }
   return (
     <>
-      <div css={ErrorMessage}>
-        {error && <p>{error}</p>}
-        {nameError && <p>{nameError}</p>}
-        {deadLineError && <p>{deadLineError}</p>}
-      </div>
-      <table css={Border}>
+      {error && <p css={errorMessage}>{error}</p>}
+      <table css={border}>
         <thead>
           <tr>
             <th>完了ボタン</th>
-            <th>登録順</th>
+            <th>#</th>
             <th>タスク名</th>
             <th>実行期限</th>
             <th>編集</th>
@@ -74,12 +61,7 @@ const TaskList = (props: Props) => {
         <tbody>
           {props.tasks.map((task: Task, index) =>
             task.isEdit ? (
-              <tr
-                key={index}
-                style={{
-                  textDecoration: task.isDone ? 'line-through' : 'none',
-                }}
-              >
+              <tr key={index} css={isDoneLine(task)}>
                 <td>
                   <p></p>
                 </td>
@@ -122,12 +104,7 @@ const TaskList = (props: Props) => {
                 </td>
               </tr>
             ) : (
-              <tr
-                key={index}
-                style={{
-                  textDecoration: task.isDone ? 'line-through' : 'none',
-                }}
-              >
+              <tr key={index} css={isDoneLine(task)}>
                 <td>
                   <input
                     type="checkbox"
@@ -166,7 +143,7 @@ const TaskList = (props: Props) => {
   )
 }
 
-const Border = css({
+const border = css({
   width: 700,
   margin: 'auto',
   padding: 'auto',
@@ -174,7 +151,11 @@ const Border = css({
   borderCollapse: 'collapse',
   textAlign: 'center',
 })
-const ErrorMessage = css({
+const isDoneLine = (task: Task) =>
+  css({
+    textDecoration: task.isDone ? 'line-through' : 'none',
+  })
+const errorMessage = css({
   color: 'red',
   marginTop: 0,
   textAlign: 'center',
