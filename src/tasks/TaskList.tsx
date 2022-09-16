@@ -24,22 +24,25 @@ const TaskList = (props: Props) => {
   }
   const editDone = (index: number) => {
     if (name == '' && deadLine == '') {
-      setError('入力してください')
-      setNameError('')
-      setDeadLineError('')
+      errorState('入力してください', '', '')
       return
     } else if (name == '') {
-      setError('')
-      setNameError('タスク名を入力してください')
-      setDeadLineError('')
+      errorState('', 'タスク名を入力してください', '')
       return
     } else if (deadLine == '') {
-      setError('')
-      setNameError('')
-      setDeadLineError('実行期限を入力してください')
+      errorState('', '', '実行期限を入力してください')
       return
     }
     props.onClickEditDone(index, name, deadLine)
+  }
+  const errorState = (
+    strNoName: string,
+    strNoDeadLine: string,
+    strNoBoth: string,
+  ) => {
+    setError(strNoName)
+    setNameError(strNoDeadLine)
+    setDeadLineError(strNoBoth)
   }
   const editCancel = (index: number) => {
     setName('')
@@ -51,22 +54,10 @@ const TaskList = (props: Props) => {
   }
   return (
     <>
-      <div css={error}>
-        {error && (
-          <p style={{ color: 'red', marginTop: 0, textAlign: 'center' }}>
-            {error}
-          </p>
-        )}
-        {nameError && (
-          <p style={{ color: 'red', marginTop: 0, textAlign: 'center' }}>
-            {nameError}
-          </p>
-        )}
-        {deadLineError && (
-          <p style={{ color: 'red', marginTop: 0, textAlign: 'center' }}>
-            {deadLineError}
-          </p>
-        )}
+      <div css={ErrorMessage}>
+        {error && <p>{error}</p>}
+        {nameError && <p>{nameError}</p>}
+        {deadLineError && <p>{deadLineError}</p>}
       </div>
       <table css={Border}>
         <thead>
@@ -181,6 +172,11 @@ const Border = css({
   padding: 'auto',
   border: 'solid 1px #444',
   borderCollapse: 'collapse',
+  textAlign: 'center',
+})
+const ErrorMessage = css({
+  color: 'red',
+  marginTop: 0,
   textAlign: 'center',
 })
 export default TaskList

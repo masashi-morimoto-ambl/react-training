@@ -21,27 +21,17 @@ const TaskForm = (props: Props) => {
   }
   const addNewTask = () => {
     if (name == '' && deadLine == '') {
-      setError('入力してください')
-      setNameError('')
-      setDeadLineError('')
+      errorState('入力してください', '', '')
       return
     } else if (name == '') {
-      setError('')
-      setNameError('タスク名を入力してください')
-      setDeadLineError('')
+      errorState('', 'タスク名を入力してください', '')
       return
     } else if (deadLine == '') {
-      setError('')
-      setNameError('')
-      setDeadLineError('実行期限を入力してください')
+      errorState('', '', '実行期限を入力してください')
       return
     }
     props.addTask(newTask)
-    setName('')
-    setDeadLine('')
-    setError('')
-    setNameError('')
-    setDeadLineError('')
+    clearForm()
   }
   const clearForm = () => {
     setName('')
@@ -50,12 +40,21 @@ const TaskForm = (props: Props) => {
     setNameError('')
     setDeadLineError('')
   }
+  const errorState = (
+    strNoName: string,
+    strNoDeadLine: string,
+    strNoBoth: string,
+  ) => {
+    setError(strNoName)
+    setNameError(strNoDeadLine)
+    setDeadLineError(strNoBoth)
+  }
 
   return (
     <form css={formStyle}>
-      {error && <p style={{ color: 'red', margin: 0 }}>{error}</p>}
-      {nameError && <p style={{ color: 'red' }}>{nameError}</p>}
-      {deadLineError && <p style={{ color: 'red' }}>{deadLineError}</p>}
+      {error && <p css={ErrorMessage}>{error}</p>}
+      {nameError && <p css={ErrorMessage}>{nameError}</p>}
+      {deadLineError && <p css={ErrorMessage}>{deadLineError}</p>}
       <label htmlFor="name">タスク名：</label>
       <input
         type="text"
@@ -92,5 +91,8 @@ const formStyle = css({
   margin: 'auto',
   textAlign: 'center',
 })
-
+const ErrorMessage = css({
+  margin: 0,
+  color: 'red',
+})
 export default TaskForm
