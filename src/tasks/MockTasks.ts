@@ -1,67 +1,44 @@
-import { Task } from './Task'
-
-export const MOCK_TASKS = [
-  new Task({
-    id: 1,
-    name: 'あ',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: true,
-  }),
-  new Task({
-    id: 2,
-    name: 'い',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: true,
-  }),
-  new Task({
-    id: 3,
-    name: 'う',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: false,
-  }),
-  new Task({
-    id: 4,
-    name: 'え',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: true,
-  }),
-  new Task({
-    id: 5,
-    name: 'お',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: false,
-  }),
-]
-
-export const data = [
+export type Task = {
+  name: string
+  deadLine: string
+  isDone: boolean
+  isEdit: boolean
+}
+export const MOCK_TASKS: Task[] = [
   {
-    id: 1,
-    name: 'あ',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: true,
+    name: '料理',
+    deadLine: '2022-01-01',
+    isDone: false,
+    isEdit: false,
   },
   {
-    id: 2,
-    name: 'い',
-    deadLine: '2022-1-1T00:00:00',
+    name: 'ゴミ出し',
+    deadLine: '2022-01-01',
     isDone: true,
+    isEdit: false,
   },
   {
-    id: 3,
-    name: 'う',
-    deadLine: '2022-1-1T00:00:00',
+    name: 'お迎え',
+    deadLine: '2022-01-01',
     isDone: false,
+    isEdit: false,
   },
   {
-    id: 4,
-    name: 'え',
-    deadLine: '2022-1-1T00:00:00',
+    name: 'メール確認',
+    deadLine: '2022-01-01',
+    isDone: false,
+    isEdit: false,
+  },
+  {
+    name: 'お店予約',
+    deadLine: '2022-01-01',
+    isDone: false,
+    isEdit: false,
+  },
+  {
+    name: 'あああああああああ',
+    deadLine: '2022-01-01',
     isDone: true,
-  },
-  {
-    id: 5,
-    name: 'お',
-    deadLine: '2022-1-1T00:00:00',
-    isDone: false,
+    isEdit: false,
   },
 ]

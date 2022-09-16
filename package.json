@@ -30,8 +30,7 @@
     "format": "prettier --ignore-path .gitignore --write '**/*.{js,jsx,ts,tsx,md,json}'",
     "type-check": "tsc --noEmit",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "start": "react-scripts start"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
