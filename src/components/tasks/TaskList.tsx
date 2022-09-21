@@ -73,7 +73,7 @@ const TaskList = (props: Props) => {
                     onChange={(e) => {
                       setName(e.target.value)
                     }}
-                  ></input>
+                  />
                 </td>
                 <td>
                   <input
@@ -82,7 +82,7 @@ const TaskList = (props: Props) => {
                     onChange={(e) => {
                       setDeadLine(e.target.value)
                     }}
-                  ></input>
+                  />
                 </td>
                 <td>
                   <button

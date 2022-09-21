@@ -4,6 +4,7 @@ export type Task = {
   isDone: boolean
   isEdit: boolean
 }
+
 export const MOCK_TASKS: Task[] = [
   {
     name: '料理',

@@ -1,21 +1,37 @@
 import { css } from '@emotion/react'
 import TaskList from './TaskList'
 import TaskForm from './TaskForm'
-import { useState } from 'react'
-import { MOCK_TASKS, Task } from './MockTasks'
+import { useEffect, useState } from 'react'
+import { Task } from './MockTasks'
+import { tasksRepository } from '@/repositories/tasks/tasksRepository'
 
 const TasksPage: React.FunctionComponent = () => {
-  const [tasks, setTasks] = useState(MOCK_TASKS)
-  const addTask = (task: Task) => {
-    const newTask = [...tasks, task]
-    setTasks(newTask)
+  const [tasks, setTasks] = useState<Task[]>()
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const todos = await tasksRepository.getTasks()
+        setTasks(todos)
+      } catch (error) {
+        throw error
+      }
+    }
+    fetchTasks()
+  }, [])
+
+  const addTask = async (task: Task) => {
+    const response = await tasksRepository.postTask(task)
+    setTasks(response)
   }
-  const onClickDelete = (index: number) => {
-    const deletedTodoList = [...tasks]
-    deletedTodoList.splice(index, 1)
-    setTasks(deletedTodoList)
+  const onClickDelete = async (index: number) => {
+    const response = await tasksRepository.deleteTask(index)
+    setTasks(response)
   }
   const editingTask = (index: number) => {
+    if (tasks === undefined) {
+      return
+    }
     const newTodos = tasks.map((task, taskIndex) => {
       if (taskIndex === index) {
         task.isEdit = true
@@ -24,18 +40,14 @@ const TasksPage: React.FunctionComponent = () => {
     })
     setTasks(newTodos)
   }
-  const editDone = (index: number, name: string, deadLine: string) => {
-    const newTodos = tasks.map((task, taskIndex) => {
-      if (taskIndex === index) {
-        task.name = name
-        task.deadLine = deadLine
-        task.isEdit = false
-      }
-      return task
-    })
-    setTasks(newTodos)
+  const editDone = async (index: number) => {
+    const response = await tasksRepository.editTask(index)
+    setTasks(response)
   }
   const editCancel = (index: number) => {
+    if (tasks === undefined) {
+      return
+    }
     const newTodos = tasks.map((task, taskIndex) => {
       if (taskIndex === index) {
         task.isEdit = false
@@ -45,6 +57,9 @@ const TasksPage: React.FunctionComponent = () => {
     setTasks(newTodos)
   }
   const doneTask = (index: number) => {
+    if (tasks === undefined) {
+      return
+    }
     const newTodos = tasks.map((task, taskIndex) => {
       if (taskIndex === index) {
         task.isDone = !task.isDone
@@ -58,14 +73,16 @@ const TasksPage: React.FunctionComponent = () => {
       <div css={TitleStyle}>
         <h1>TODOアプリ</h1>
       </div>
-      <TaskList
-        tasks={tasks}
-        onClickDelete={onClickDelete}
-        onClickEdit={editingTask}
-        onClickEditDone={editDone}
-        onClickCancel={editCancel}
-        doneTask={doneTask}
-      />
+      {tasks && (
+        <TaskList
+          tasks={tasks}
+          onClickDelete={onClickDelete}
+          onClickEdit={editingTask}
+          onClickEditDone={editDone}
+          onClickCancel={editCancel}
+          doneTask={doneTask}
+        />
+      )}
       <TaskForm addTask={addTask} />
     </>
   )

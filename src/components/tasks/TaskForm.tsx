@@ -41,7 +41,7 @@ const TaskForm = (props: Props) => {
   }
 
   return (
-    <form css={formStyle}>
+    <form css={formStyle} method="post">
       {error && <p css={errorMessage}>{error}</p>}
       <label htmlFor="name">タスク名：</label>
       <input
