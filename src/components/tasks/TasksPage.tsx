@@ -21,47 +21,68 @@ const TasksPage: React.FunctionComponent = () => {
   }, [])
 
   const addTask = async (task: Task) => {
-    const response = await tasksRepository.postTask(task)
-    setTasks(response)
+    const fetchTasks = async () => {
+      try {
+        const response = await tasksRepository.postTask(task)
+        setTasks(response)
+      } catch (error) {
+        throw error
+      }
+    }
+    fetchTasks()
   }
-  const onClickDelete = async (index: number) => {
-    const response = await tasksRepository.deleteTask(index)
-    setTasks(response)
+  const onClickDelete = async (taskId: number) => {
+    const fetchTasks = async () => {
+      try {
+        const response = await tasksRepository.deleteTask(taskId)
+        setTasks(response)
+      } catch (error) {
+        throw error
+      }
+    }
+    fetchTasks()
   }
-  const editingTask = (index: number) => {
+  const editingTask = (taskId: number) => {
     if (tasks === undefined) {
       return
     }
-    const newTodos = tasks.map((task, taskIndex) => {
-      if (taskIndex === index) {
+    const newTodos = tasks.map((task) => {
+      if (task.taskId === taskId) {
         task.isEdit = true
       }
       return task
     })
     setTasks(newTodos)
   }
-  const editDone = async (index: number) => {
-    const response = await tasksRepository.editTask(index)
-    setTasks(response)
+  const editDone = async (taskId: number) => {
+    const fetchTasks = async () => {
+      try {
+        const response = await tasksRepository.editTask(taskId)
+        setTasks(response)
+      } catch (error) {
+        throw error
+      }
+    }
+    fetchTasks()
   }
-  const editCancel = (index: number) => {
+  const editCancel = (taskId: number) => {
     if (tasks === undefined) {
       return
     }
-    const newTodos = tasks.map((task, taskIndex) => {
-      if (taskIndex === index) {
+    const newTodos = tasks.map((task) => {
+      if (task.taskId === taskId) {
         task.isEdit = false
       }
       return task
     })
     setTasks(newTodos)
   }
-  const doneTask = (index: number) => {
+  const doneTask = (taskId: number) => {
     if (tasks === undefined) {
       return
     }
-    const newTodos = tasks.map((task, taskIndex) => {
-      if (taskIndex === index) {
+    const newTodos = tasks.map((task) => {
+      if (task.taskId === taskId) {
         task.isDone = !task.isDone
       }
       return task

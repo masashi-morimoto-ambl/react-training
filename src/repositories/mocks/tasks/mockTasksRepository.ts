@@ -4,36 +4,42 @@ import { rest } from 'msw'
 const createTasks = () => {
   return [
     {
+      taskId: 0,
       name: '料理',
       deadLine: '2022-01-01',
       isDone: false,
       isEdit: false,
     },
     {
+      taskId: 1,
       name: 'ゴミ出し',
       deadLine: '2022-01-01',
       isDone: true,
       isEdit: false,
     },
     {
+      taskId: 2,
       name: 'お迎え',
       deadLine: '2022-01-01',
       isDone: false,
       isEdit: false,
     },
     {
+      taskId: 3,
       name: 'メール確認',
       deadLine: '2022-01-01',
       isDone: false,
       isEdit: false,
     },
     {
+      taskId: 4,
       name: 'お店予約',
       deadLine: '2022-01-01',
       isDone: false,
       isEdit: false,
     },
     {
+      taskId: 5,
       name: 'あああああああああ',
       deadLine: '2022-01-01',
       isDone: true,

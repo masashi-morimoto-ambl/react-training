@@ -59,13 +59,13 @@ const TaskList = (props: Props) => {
         </thead>
 
         <tbody>
-          {props.tasks.map((task: Task, index) =>
+          {props.tasks.map((task: Task) =>
             task.isEdit ? (
-              <tr key={index} css={isDoneLine(task)}>
+              <tr key={task.taskId} css={isDoneLine(task)}>
                 <td>
                   <p></p>
                 </td>
-                <td>{index + 1}</td>
+                <td>{task.taskId}</td>
                 <td>
                   <input
                     type="text"
@@ -87,7 +87,7 @@ const TaskList = (props: Props) => {
                 <td>
                   <button
                     onClick={() => {
-                      editDone(index)
+                      editDone(task.taskId)
                     }}
                   >
                     更新
@@ -96,7 +96,7 @@ const TaskList = (props: Props) => {
                 <td>
                   <button
                     onClick={() => {
-                      editCancel(index)
+                      editCancel(task.taskId)
                     }}
                   >
                     キャンセル
@@ -104,21 +104,21 @@ const TaskList = (props: Props) => {
                 </td>
               </tr>
             ) : (
-              <tr key={index} css={isDoneLine(task)}>
+              <tr key={task.taskId} css={isDoneLine(task)}>
                 <td>
                   <input
                     type="checkbox"
                     checked={task.isDone}
-                    onChange={() => props.doneTask(index)}
+                    onChange={() => props.doneTask(task.taskId)}
                   />
                 </td>
-                <td>{index + 1}</td>
+                <td>{task.taskId}</td>
                 <td>{task.name}</td>
                 <td>{task.deadLine}</td>
                 <td>
                   <button
                     onClick={() => {
-                      editingTask(index, task.name, task.deadLine)
+                      editingTask(task.taskId, task.name, task.deadLine)
                     }}
                     disabled={task.isDone}
                   >
@@ -128,7 +128,7 @@ const TaskList = (props: Props) => {
                 <td>
                   <button
                     onClick={() => {
-                      props.onClickDelete(index)
+                      props.onClickDelete(task.taskId)
                     }}
                   >
                     削除

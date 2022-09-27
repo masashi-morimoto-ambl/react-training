@@ -7,11 +7,13 @@ type Props = {
 }
 
 const TaskForm = (props: Props) => {
-  const [name, setName] = useState<string>('')
-  const [deadLine, setDeadLine] = useState<string>('')
-  const [error, setError] = useState<string>('')
+  const [taskId, setTaskId] = useState(0)
+  const [name, setName] = useState('')
+  const [deadLine, setDeadLine] = useState('')
+  const [error, setError] = useState('')
 
   const newTask: Task = {
+    taskId,
     name,
     deadLine,
     isDone: false,
@@ -28,6 +30,7 @@ const TaskForm = (props: Props) => {
       setErrorState('実行期限を入力してください')
       return
     }
+    setTaskId(taskId + 1)
     props.addTask(newTask)
     clearForm()
   }
